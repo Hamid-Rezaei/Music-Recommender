@@ -13,7 +13,7 @@ class CommonErrorResponseSerializer(serializers.Serializer):
 
 class SearchMusicSerializer(serializers.Serializer):
     email = serializers.EmailField(required=True)
-    audio = serializers.FileField(required=True, format='mp3')
+    audio = serializers.FileField(required=True)
 
     def update(self, instance, validated_data):
         pass

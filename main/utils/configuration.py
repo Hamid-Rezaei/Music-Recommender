@@ -4,7 +4,7 @@
 #
 # from typing import List, Dict
 #
-# from project.main.utils.base_config import CommonsBaseConfig
+# from main.utils.base_config import CommonsBaseConfig
 #
 #
 # class Configuration:
@@ -33,7 +33,7 @@
 #     def configure(cls, cls_type: type, is_test=False,
 #                   alternative_env_search_dir: str = None, silent: bool = False):
 #         """
-#         Configure project specific configuration for commons lib
+#         Configure s specific configuration for commons lib
 #         @param cls_type:  Project specific configuration(e.g.  child of .. py:class:: ncl.utils.config.base_config.CommonsBaseConfig)
 #         @param is_test:
 #         @param alternative_env_search_dir:
@@ -44,7 +44,7 @@
 #         if alternative_env_search_dir is None and not silent:
 #             print(
 #                 "Warning: alternative_env_search_dir is set to None. .env files can not be found when venv dir located"
-#                 "\noutside of project main directory. you can use alternative_env_search_dir=__file__ to avoid it."
+#                 "\noutside of s main directory. you can use alternative_env_search_dir=__file__ to avoid it."
 #                 "\n use silent = True to suppress this warning")
 #         filename = '.env'
 #         if is_test:

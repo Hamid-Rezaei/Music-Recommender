@@ -1,6 +1,6 @@
 from django.urls import path
 
-from project.main.api.controller.search_music_controller import SearchMusicController
+from main.api.controller.search_music_controller import SearchMusicController
 
 urlpatterns = [
     path(

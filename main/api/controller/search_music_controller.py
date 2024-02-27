@@ -3,9 +3,9 @@ from drf_spectacular.utils import extend_schema
 from rest_framework import status
 from rest_framework.views import APIView
 
-from project.main.api.serializer.search_music_serializer import SearchMusicSerializer, SearchMusicResponseSerializer, \
+from main.api.serializer.search_music_serializer import SearchMusicSerializer, SearchMusicResponseSerializer, \
     CommonErrorResponseSerializer
-from project.main.logic.search_music_logic import SearchMusicLogic
+from main.logic.search_music_logic import SearchMusicLogic
 
 
 class SearchMusicController(APIView):

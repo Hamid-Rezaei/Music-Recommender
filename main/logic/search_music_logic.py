@@ -1,4 +1,4 @@
-from project.main.utils.singleton import Singleton
+from main.utils.singleton import Singleton
 
 
 class SearchMusicLogic(metaclass=Singleton):
