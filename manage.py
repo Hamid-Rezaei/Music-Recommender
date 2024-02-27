@@ -21,5 +21,5 @@ def main():
 
 
 if __name__ == '__main__':
-    Configuration.configure(Config, alternative_env_search_dir=__file__)
+    Configuration.configure(Config)
     main()
