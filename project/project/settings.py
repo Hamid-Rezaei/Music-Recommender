@@ -65,28 +65,6 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 # Database
 
-# DATABASES = {
-#     'default': {
-#         # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         # 'HOST': 'music-service-music-recommender-system.a.aivencloud.com',
-#         # 'USER': '20716',
-#         # 'PASSWORD': 'AVNS_OGdqSZ696Yq05NKLDWw',
-#         # 'NAME': 'defaultdb',
-#         # 'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': env("DB_NAME"),
-#         'USER': env("DB_USER"),
-#         'PASSWORD': env("DB_PASSWORD"),
-#         'HOST': env("DB_HOST"),
-#         'PORT': env("DB_PORT"),
-#         # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         # 'NAME': 'defaultdb',
-#         # 'USER': 'avnadmin',
-#         # 'PASSWORD': 'AVNS_OGdqSZ696Yq05NKLDWw',
-#         # 'HOST': 'music-service-music-recommender-system.a.aivencloud.com',
-#         # 'PORT': 20716,
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -95,6 +73,7 @@ DATABASES = {
         'PASSWORD': os.environ.get("DB_PASSWORD"),
         'HOST': os.environ.get("DB_HOST"),
         'PORT': os.environ.get("DB_PORT", default=5432),
+        'OPTIONS': {'sslmode': 'require'},
     }
 }
 
