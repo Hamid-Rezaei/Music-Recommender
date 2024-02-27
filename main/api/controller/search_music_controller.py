@@ -32,11 +32,9 @@ class SearchMusicController(APIView):
             if not validation.is_valid():
                 return JsonResponse({"details": 'Bad Request Body.'}, status=status.HTTP_400_BAD_REQUEST)
             else:
-                res = self.technical_post_logic.create_post(
-                    author=request.user,
-                    content=validation.validated_data.get("content"),
-                    title_list=validation.validated_data.get("title"),
-                    image=validation.validated_data.get("image")
+                self.search_music_logic.search_music(
+                    email=validation.validated_data.get("email"),
+                    audio=validation.validated_data.get("audio")
                 )
 
                 response = {'msg': 'success'}
