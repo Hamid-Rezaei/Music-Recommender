@@ -1,7 +1,3 @@
-from typing import List
-import multiprocessing
-
-
 class ConfigConstants:
     RUN_ENV_TYPE_DEVELOPMENT = "development"
     RUN_ENV_TYPE_STAGE = "stage"
