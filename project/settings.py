@@ -25,8 +25,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # External apps
     'rest_framework',
     'drf_spectacular',
+
+    # Internal apps
+    'main'
 ]
 
 REST_FRAMEWORK = {
@@ -115,4 +119,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SPECTACULAR_SETTINGS = {
     'COMPONENT_SPLIT_REQUEST': True
 }
-
