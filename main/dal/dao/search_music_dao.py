@@ -5,5 +5,9 @@ class SearchMusicDao:
     def __init__(self):
         ...
 
-    def search_music_request(self, email):
-        SearchRequestEntity.objects.create(email=email, status=RequestStatusType.PENDING)
+    def search_music_request(self, email) -> SearchRequestEntity:
+        search_request: SearchRequestEntity = SearchRequestEntity.objects.create(
+            email=email,
+            status=RequestStatusType.PENDING
+        )
+        return search_request
