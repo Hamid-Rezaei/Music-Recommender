@@ -10,11 +10,9 @@ class RabbitMQConsumer(BaseRabbitMQ):
         super().__init__()
 
     def callback(self, ch, method, properties, body: bytes):
-        message_dict: dict = json.loads(body.decode(encoding="UTF-8"))
-        if message_dict.get("EventType"):
-            print(" [x] Received search music event:  %r" % message_dict)
+        print(" [x] Received " + str(body))
 
-    def basic_consume(self, callback):
+    def basic_consume_(self, callback):
         auto_ack = Configuration.config().RABBITMQ_AUTO_ACK
 
         self.channel.basic_consume(

@@ -16,3 +16,6 @@ class SearchMusicLogic(metaclass=Singleton):
 
         # write on rabbit
         self.search_music_rabbit_publisher_adapter.basic_publish(body=str(search_music.songID))
+
+
+    # def

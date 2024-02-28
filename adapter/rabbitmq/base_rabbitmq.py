@@ -46,3 +46,4 @@ class BaseRabbitMQ(AbstractBaseRabbitMQ):
         self.rabbitmq_port = Config.RABBITMQ_PORT
         self.rabbitmq_queue = Config.RABBITMQ_QUEUE
         self.channel = self._initialize_connection()
+        self.declare_queue()
