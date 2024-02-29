@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
                 ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
                 ('email', models.EmailField(max_length=254)),
                 ('status', models.CharField(choices=[('pending', 'Pending'), ('failure', 'Failure'), ('ready', 'Ready'), ('done', 'Done')], default='pending', max_length=32)),
-                ('songID', models.UUIDField(default=uuid.uuid4, editable=False)),
+                ('songID', models.CharField(max_length=100)),
                 ('creation_time', models.DateTimeField(default=django.utils.timezone.now)),
             ],
             options={

@@ -23,10 +23,7 @@ class SearchRequestEntity(models.Model):
         default=RequestStatusType.PENDING,
         max_length=32
     )
-    songID = models.UUIDField(
-        default=uuid.uuid4,
-        editable=False
-    )
+    songID = models.CharField(max_length=100)
     creation_time = models.DateTimeField(default=timezone.now)
 
     class Meta:
