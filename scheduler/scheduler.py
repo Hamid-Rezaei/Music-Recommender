@@ -14,7 +14,7 @@ class Scheduler:
     def __init__(self):
         ...
 
-    def _initiate_scheduler() -> BlockingScheduler:
+    def _initiate_scheduler(self) -> BlockingScheduler:
         try:
 
             job_stores = {

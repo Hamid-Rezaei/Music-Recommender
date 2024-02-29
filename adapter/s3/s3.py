@@ -8,7 +8,7 @@ class SimpleStorageService:
     def __init__(self):
         self.bucket = self._initial_s3_bucket()
 
-    def _initial_s3_bucket(self):
+    def _initiate_s3_bucket(self):
         try:
             s3_resource = boto3.resource(
                 's3',
