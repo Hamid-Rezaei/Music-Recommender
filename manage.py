@@ -2,7 +2,6 @@
 import os
 import sys
 
-from main.consumer.search_event_consumer import SearchEventConsumer
 from project.configuration.config import Config
 from project.configuration.configuration import Configuration
 
