@@ -1,0 +1,6 @@
+class Jobs:
+    def __init__(self):
+        ...
+
+    def update_search_request_status(self):
+        ...
