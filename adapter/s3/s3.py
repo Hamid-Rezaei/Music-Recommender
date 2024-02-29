@@ -23,12 +23,22 @@ class SimpleStorageService:
             bucket = s3_resource.Bucket(Config.AWS_STORAGE_BUCKET_NAME)
             return bucket
 
-    def upload_object(self, file, object_uri):
+    def upload_object(self, file, object_uri: str):
         try:
             self.bucket.put_object(
                 ACL='private',
                 Body=file,
                 Key=object_uri
+            )
+        except ClientError:
+            raise
+
+    def download_object(self, object_uri: str):
+        try:
+            object_name = object_uri.rsplit('/')[-1]
+            self.bucket.download_file(
+                object_name,
+                object_uri
             )
         except ClientError:
             raise
