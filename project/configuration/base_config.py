@@ -72,34 +72,6 @@ class DatabaseBaseConfig:
     RDB_PORT = None
 
 
-class DatabaseBaseConfig2:
-    DATABASE2_URI: str = None
-    SQLALCHEMY2_TRACK_MODIFICATIONS: bool = False  # for performance overhead
-
-    SQLALCHEMY2_ENGINE_OPTIONS: dict = {'isolation_level': 'REPEATABLE READ', "pool_pre_ping": True,
-                                        "pool_recycle": 3600, "pool_size": 100}
-    DJANGO2_DB_ENGINE = None
-    RDB2_NAME = None
-    RDB2_USERNAME = None
-    RDB2_PASSWORD = None
-    RDB2_HOST = None
-    RDB2_PORT = None
-
-
-class DatabaseBaseConfig3:
-    DATABASE3_URI: str = None
-    SQLALCHEMY3_TRACK_MODIFICATIONS: bool = False  # for performance overhead
-
-    SQLALCHEMY3_ENGINE_OPTIONS: dict = {'isolation_level': 'REPEATABLE READ', "pool_pre_ping": True,
-                                        "pool_recycle": 3600, "pool_size": 100}
-    DJANGO_DB3_ENGINE = None
-    RDB3_NAME = None
-    RDB3_USERNAME = None
-    RDB3_PASSWORD = None
-    RDB3_HOST = None
-    RDB3_PORT = None
-
-
 class PostgresDatabaseConfig(DatabaseBaseConfig):
     DJANGO_DB_ENGINE = "django.db.backends.postgresql_psycopg2"
     RDB_NAME = None
@@ -114,23 +86,21 @@ class PaginationBaseConfig:
     DEFAULT_PAGE_SIZE: int = 25
 
 
-class APIConfig:
-    API_URL_PREFIX: str = "/api/"
-    API_URL_VERSION: str = "v1/"
-
-
-class UtilsConfig:
-    UTILS_PRICE_NOTICE_DB_READ_LIVENESS_IN_SECONDS = 5 * 60  # 5 Minutes
+class S3Config:
+    ENDPOINT_URL = None
+    AWS_ACCESS_KEY_ID = None
+    AWS_SECRET_ACCESS_KEY = None
+    AWS_STORAGE_BUCKET_NAME = None
 
 
 class CommonsBaseConfig(
+    PostgresDatabaseConfig,
     WebFrameworkConfig,
     DatabaseBaseConfig,
     EnvironmentConfig,
     PaginationBaseConfig,
     RedisBaseConfig,
-    APIConfig,
     JWTConfig,
-    UtilsConfig
+    S3Config
 ):
     pass

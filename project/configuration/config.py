@@ -14,3 +14,9 @@ class Config:
     RABBITMQ_PORT: int = 5672
     RABBITMQ_QUEUE: str = ""
     RABBITMQ_VHOST: str = ""
+
+    # S3
+    ENDPOINT_URL: str = ""
+    AWS_ACCESS_KEY_ID: str = ""
+    AWS_SECRET_ACCESS_KEY: str = ""
+    AWS_STORAGE_BUCKET_NAME: str = ""

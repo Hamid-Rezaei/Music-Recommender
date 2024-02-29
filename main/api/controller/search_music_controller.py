@@ -5,7 +5,7 @@ from rest_framework.views import APIView
 
 from main.api.serializer.search_music_serializer import SearchMusicSerializer, SearchMusicResponseSerializer, \
     CommonErrorResponseSerializer
-from main.logic.search_music_logic import SearchMusicLogic
+from main.logic.search_music_api_logic import SearchMusicLogic
 
 
 class SearchMusicController(APIView):
