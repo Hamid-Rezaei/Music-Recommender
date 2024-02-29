@@ -12,7 +12,8 @@ from scheduler.jobs import Jobs
 
 class Scheduler:
     def __init__(self):
-        ...
+        self.jobs = Jobs()
+        self.scheduler: BlockingScheduler = self._initiate_scheduler()
 
     def _initiate_scheduler(self) -> BlockingScheduler:
         try:
@@ -35,20 +36,16 @@ class Scheduler:
     def start(self):
         try:
 
-            social_jobs = Jobs()
-
-            scheduler: BlockingScheduler = self._initiate_scheduler()
-
-            scheduler.add_job(
-                social_jobs.update_search_request_status,
+            self.scheduler.add_job(
+                self.jobs.update_search_request_status,
                 JobTriggers.get_every_5_minutes_trigger()
             )
 
             print('Press Ctrl+{0} to exit'.format('Break' if os.name == 'nt' else 'C'))
-            scheduler.print_jobs()
+            self.scheduler.print_jobs()
 
             try:
-                scheduler.start()
+                self.scheduler.start()
             except (KeyboardInterrupt, SystemExit):
                 pass
         except Exception:

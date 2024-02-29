@@ -6,7 +6,7 @@ from project.configuration.config import Config
 
 class SimpleStorageService:
     def __init__(self):
-        self.bucket = self._initial_s3_bucket()
+        self.bucket = self._initiate_s3_bucket()
 
     def _initiate_s3_bucket(self):
         try:
