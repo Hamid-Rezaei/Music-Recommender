@@ -4,7 +4,6 @@ import sys
 
 from project.configuration.config import Config
 from project.configuration.configuration import Configuration
-# from scheduler.scheduler import Scheduler
 
 
 def main():
@@ -23,5 +22,4 @@ def main():
 
 if __name__ == '__main__':
     Configuration.configure(Config)
-    # Scheduler().start()
     main()

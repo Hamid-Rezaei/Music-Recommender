@@ -9,6 +9,15 @@ class Config:
     DB_HOST: str
     DB_PORT: int = 5432
 
+    # Redis Config
+    REDIS_HOST: str = None
+    REDIS_SLAVE_HOST: str = None
+    REDIS_PORT: int = 6379
+    REDIS_DB: int = 0
+    REDIS_PASSWORD: str = None
+    REDIS_USERNAME: str = None
+    REDIS_DECODE_RESPONSES: bool = True
+
     # RabbitMQ Configs
     RABBITMQ_AUTO_ACK: bool = False
     RABBITMQ_USERNAME: str = ""

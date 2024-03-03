@@ -11,6 +11,7 @@ class Jobs:
 
         for ready_request in ready_requests:
             # TODO: send email
+            print("email")
 
             # update status to done
             self.search_music_dao.update_search_music_request_status(
