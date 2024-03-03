@@ -1,3 +1,5 @@
+from typing import List
+
 from main.models import SearchRequestEntity, RequestStatusType
 from main.utils.singleton import Singleton
 
@@ -25,3 +27,6 @@ class SearchMusicDao(metaclass=Singleton):
         search_request: SearchRequestEntity = self.get_search_music_request(search_id=search_id)
         search_request.songID = songID
         search_request.save()
+
+    def get_ready_search_music_requests(self) -> List[SearchRequestEntity]:
+        return SearchRequestEntity.objects.filter(status=RequestStatusType.READY.name).all()

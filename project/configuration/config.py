@@ -28,3 +28,8 @@ class Config:
     SHAZAM_API_KEY: str = ""
     SHAZAM_URL: str = ""
     SHAZAM_HOST: str = ""
+
+    # MailGun Configs
+    MAIL_URL: str = ""
+    MAIL_API_KEY: str = ""
+    MAIL_DOMAIN_NAME: str = ""
