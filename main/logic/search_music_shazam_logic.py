@@ -1,7 +1,9 @@
-from ShazamAPI import Shazam
+import requests
 
 from adapter.s3.s3 import SimpleStorageService
 from main.utils.singleton import Singleton
+from project.configuration.config import Config
+from project.configuration.configuration import Configuration
 
 
 class SearchMusicShazamLogic(metaclass=Singleton):
@@ -10,13 +12,27 @@ class SearchMusicShazamLogic(metaclass=Singleton):
         self.s3 = SimpleStorageService()
 
     def recognize_music_by_shazam(self, audio_uri):
-        mp3_file_content_to_recognize = self.s3.download_object(object_uri=audio_uri)
+        audio_name = '0453f14e-4bc5-475c-8ad1-32dbfa7233c8.mp3'
+        files = {"upload_file": open(Config.FILES_FOLDER + audio_name, 'rb')}
+        headers = {
+            "X-RapidAPI-Key": Config.SHAZAM_API_KEY,
+            "X-RapidAPI-Host": Config.SHAZAM_HOST
+        }
 
-        shazam = Shazam(
-            mp3_file_content_to_recognize,
-            # lang='en',
-            # time_zone='Europe/Paris'
-        )
-        recognize_generator = shazam.recognizeSong()
-        while True:
-            print(next(recognize_generator))
+        response = requests.post(url=Config.SHAZAM_URL, files=files, headers=headers)
+
+        if response.status_code == 200:
+            data = response.json()
+            print(data['track']['title'])
+        else:
+            print(f"Shazam Error: {response.status_code}")
+            raise
+
+
+if __name__ == '__main__':
+    Configuration.configure(Config)
+
+    search_shazam_logic = SearchMusicShazamLogic()
+    search_shazam_logic.recognize_music_by_shazam(
+        '/home/h.rezaei@asax.local/MyWorkspace/cloud/music-recommender-system/0453f14e-4bc5-475c-8ad1-32dbfa7233c8.mp3'
+    )
