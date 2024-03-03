@@ -1,3 +1,4 @@
+import json
 from datetime import datetime
 
 from adapter.rabbitmq.rabbitmq_publisher import RabbitMQPublisher
@@ -26,4 +27,8 @@ class SearchMusicLogic(metaclass=Singleton):
         self.s3_adapter.upload_object(file=audio.file, object_uri=audio_uri)
 
         # write on rabbit
-        self.search_music_rabbit_publisher_adapter.basic_publish(body=audio_uri)
+        body = {
+            'audio_uri': audio_uri,
+            'search_id': str(search_music.id)
+        }
+        self.search_music_rabbit_publisher_adapter.basic_publish(body=json.dumps(body))
