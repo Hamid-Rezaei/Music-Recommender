@@ -10,7 +10,7 @@ class SearchEventConsumer:
 
     def callback(self, ch, method, properties, body: bytes):
         print(" [x] Received " + str(body))
-        self.search_music_shazam_logic.find_music_by_shazam(audio=None)
+        self.search_music_shazam_logic.recognize_music_by_shazam(audio_uri=str(body))
 
     def consume(self):
         self.search_music_rabbit_consumer_adapter.basic_consume_(

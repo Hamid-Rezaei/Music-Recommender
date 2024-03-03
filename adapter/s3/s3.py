@@ -1,10 +1,12 @@
 import boto3
 from botocore.exceptions import ClientError
 
+from main.utils.singleton import Singleton
 from project.configuration.config import Config
+from project.configuration.configuration import Configuration
 
 
-class SimpleStorageService:
+class SimpleStorageService(metaclass=Singleton):
     def __init__(self):
         self.bucket = self._initiate_s3_bucket()
 
@@ -37,8 +39,16 @@ class SimpleStorageService:
         try:
             object_name = object_uri.rsplit('/')[-1]
             self.bucket.download_file(
-                object_name,
-                object_uri
+                Key=object_uri,
+                Filename=f'/home/h.rezaei@asax.local/MyWorkspace/cloud/music-recommender-system/{object_name}'
             )
+
         except ClientError:
             raise
+
+
+if __name__ == '__main__':
+    Configuration.configure(Config)
+
+    sss = SimpleStorageService()
+    sss.download_object('2024/audio/0453f14e-4bc5-475c-8ad1-32dbfa7233c8.mp3')

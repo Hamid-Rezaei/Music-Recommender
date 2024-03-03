@@ -1,22 +1,22 @@
-import requests
+from ShazamAPI import Shazam
 
+from adapter.s3.s3 import SimpleStorageService
 from main.utils.singleton import Singleton
 
 
 class SearchMusicShazamLogic(metaclass=Singleton):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.s3 = SimpleStorageService()
 
-    def find_music_by_shazam(self, audio):
-        url = "https://shazam-api-free.p.rapidapi.com/shazam/recognize/"
+    def recognize_music_by_shazam(self, audio_uri):
+        mp3_file_content_to_recognize = self.s3.download_object(object_uri=audio_uri)
 
-        payload = "-----011000010111000001101001\r\nContent-Disposition: form-data; name=\"upload_file\"\r\n\r\n\r\n-----011000010111000001101001--\r\n\r\n"
-        headers = {
-            "content-type": "multipart/form-data; boundary=---011000010111000001101001",
-            "X-RapidAPI-Key": "SIGN-UP-FOR-KEY",
-            "X-RapidAPI-Host": "shazam-api-free.p.rapidapi.com"
-        }
-
-        response = requests.post(url, data=payload, headers=headers)
-
-        print(response.json())
+        shazam = Shazam(
+            mp3_file_content_to_recognize,
+            # lang='en',
+            # time_zone='Europe/Paris'
+        )
+        recognize_generator = shazam.recognizeSong()
+        while True:
+            print(next(recognize_generator))
