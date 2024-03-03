@@ -25,4 +25,4 @@ RUN pip install -r requirements.txt
 # Creating folders, and files for a project:
 COPY . /code
 
-CMD ["sh", "entrypoint.sh" ]
+CMD ["sh", "main-entrypoint.sh" ]
