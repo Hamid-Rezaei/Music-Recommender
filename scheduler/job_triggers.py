@@ -9,8 +9,9 @@ class JobTriggers:
     @staticmethod
     def get_every_5_minutes_trigger():
         return CronTrigger(
-            day_of_week="sat,sun,mon,tue,wed",
-            hour="8-20",
-            minute="*/5",
-            timezone=timezone("Asia/Tehran")
+            # day_of_week="sat,sun,mon,tue,wed",
+            # hour="8-20",
+            # minute="*/5",
+            # timezone=timezone("Asia/Tehran")
+            second=30
         )

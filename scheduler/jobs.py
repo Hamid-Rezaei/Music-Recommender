@@ -8,6 +8,7 @@ class Jobs:
 
     def update_search_request_status(self):
         ready_requests = self.search_music_dao.get_ready_search_music_requests()
+        print('injam')
 
         for ready_request in ready_requests:
             # TODO: send email
