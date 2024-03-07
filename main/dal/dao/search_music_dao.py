@@ -29,4 +29,4 @@ class SearchMusicDao(metaclass=Singleton):
         search_request.save()
 
     def get_ready_search_music_requests(self) -> List[SearchRequestEntity]:
-        return SearchRequestEntity.objects.filter(status=RequestStatusType.READY.name).all()
+        return SearchRequestEntity.objects.filter(status=RequestStatusType.READY).all()
