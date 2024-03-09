@@ -35,9 +35,8 @@ class SimpleStorageService(metaclass=Singleton):
         except ClientError:
             raise
 
-    def download_object(self, object_uri: str):
+    def download_object(self, object_uri: str, object_name: str):
         try:
-            object_name = object_uri.rsplit('/')[-1]
             self.bucket.download_file(
                 Key=object_uri,
                 Filename=Config.FILES_FOLDER + object_name

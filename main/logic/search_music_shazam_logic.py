@@ -1,6 +1,5 @@
 import requests
 
-from adapter.s3.s3 import SimpleStorageService
 from main.utils.singleton import Singleton
 from project.configuration.config import Config
 from project.configuration.configuration import Configuration
@@ -9,11 +8,10 @@ from project.configuration.configuration import Configuration
 class SearchMusicShazamLogic(metaclass=Singleton):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.s3 = SimpleStorageService()
 
-    def recognize_music_by_shazam(self, audio_uri):
-        # audio_name = '0453f14e-4bc5-475c-8ad1-32dbfa7233c8.mp3'
-        files = {"upload_file": open(Config.FILES_FOLDER + audio_uri, 'rb')}
+    def recognize_music_by_shazam(self, audio_name):
+
+        files = {"upload_file": open(Config.FILES_FOLDER + audio_name, 'rb')}
         headers = {
             "X-RapidAPI-Key": Config.SHAZAM_API_KEY,
             "X-RapidAPI-Host": Config.SHAZAM_HOST
