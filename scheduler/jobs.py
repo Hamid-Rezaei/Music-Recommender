@@ -17,7 +17,7 @@ class Jobs:
                 "/home/hamid/Myworkspace/cloud/music-recommender-system/0453f14e-4bc5-475c-8ad1-32dbfa7233c8.mp3",
                 'rb'
             )
-            self.mail_adapter.send(receiver=ready_request.email, message="This is your music.", attachments=attachments)
+            self.mail_adapter.send(receiver=ready_request.email, message="Hi, this is your music.", attachments=attachments)
 
             # update status to done
             self.search_music_dao.update_search_music_request_status(

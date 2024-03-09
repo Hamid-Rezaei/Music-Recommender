@@ -40,7 +40,7 @@ class SimpleStorageService(metaclass=Singleton):
             object_name = object_uri.rsplit('/')[-1]
             self.bucket.download_file(
                 Key=object_uri,
-                Filename=f'/home/h.rezaei@asax.local/MyWorkspace/cloud/music-recommender-system/{object_name}'
+                Filename=Config.FILES_FOLDER + object_name
             )
 
         except ClientError:

@@ -12,7 +12,7 @@ class Mailgun:
         request = requests.post(
             url=Config.MAIL_URL,
             auth=("api", Config.MAIL_API_KEY),
-            # files=[("attachment", attachments)],
+            files=[("attachment", attachments)],
             data={
                 "from": f"mailgun@{Config.MAIL_DOMAIN_NAME}",
                 "to": f"{receiver}",
