@@ -11,6 +11,7 @@ class Jobs:
         self.mail_adapter = Mailgun()
 
     def update_search_request_status(self):
+        print("update search request status")
         ready_requests = self.search_music_dao.get_ready_search_music_requests()
 
         for ready_request in ready_requests:

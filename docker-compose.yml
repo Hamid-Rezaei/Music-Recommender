@@ -1,6 +1,101 @@
 version: '3.7'
 
+x-environment: &common-env
+  # General
+  FILES_FOLDER: ${FILES_FOLDER}
+
+  # Postgres
+  DB_NAME: ${DB_NAME}
+  DB_USER: ${DB_USER}
+  DB_PASSWORD: ${DB_PASSWORD}
+  DB_HOST: ${DB_HOST}
+  DB_PORT: ${DB_PORT}
+
+  # Redis
+  REDIS_HOST: ${REDIS_HOST}
+  REDIS_PORT: ${REDIS_PORT}
+
+  # RabbitMQ
+  RABBITMQ_AUTO_ACK: ${RABBITMQ_AUTO_ACK}
+  RABBITMQ_USERNAME: ${RABBITMQ_USERNAME}
+  RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD}
+  RABBITMQ_HOST: ${RABBITMQ_HOST}
+  RABBITMQ_PORT: ${RABBITMQ_PORT}
+  RABBITMQ_QUEUE: ${RABBITMQ_QUEUE}
+  RABBITMQ_VHOST: ${RABBITMQ_VHOST}
+
+  # S3
+  ENDPOINT_URL: ${ENDPOINT_URL}
+  AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+  AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+  AWS_STORAGE_BUCKET_NAME: ${AWS_STORAGE_BUCKET_NAME}
+
+  # Shazam
+  SHAZAM_API_KEY: ${SHAZAM_API_KEY}
+  SHAZAM_URL: ${SHAZAM_URL}
+  SHAZAM_HOST: ${SHAZAM_HOST}
+
+  # Spotify
+  SPOTIFY_API_KEY: ${SPOTIFY_API_KEY}
+  SPOTIFY_SEARCH_URL: ${SPOTIFY_SEARCH_URL}
+  SPOTIFY_RECOMMENDATION_URL: ${SPOTIFY_RECOMMENDATION_URL}
+  SPOTIFY_HOST: ${SPOTIFY_HOST}
+
+  # Mail
+  MAIL_URL: ${MAIL_URL}
+  MAIL_API_KEY: ${MAIL_API_KEY}
+  MAIL_DOMAIN_NAME: ${MAIL_DOMAIN_NAME}
+
+
 services:
+  api:
+    container_name: music_api
+    image: main_service
+    restart: always
+    environment:
+      <<: *common-env
+    volumes:
+      - ./:/code
+    expose:
+      - 8000
+    ports:
+      - "8000:8000"
+    networks:
+      - musicnet
+
+    entrypoint: "./main-entrypoint.sh"
+
+  event_consumer:
+    container_name: music_consumer
+    image: main_service
+    restart: always
+    depends_on:
+      - redis
+    environment:
+      <<: *common-env
+    volumes:
+      - ./:/code
+    networks:
+      - musicnet
+
+    entrypoint: "./consumer-entrypoint.sh"
+
+
+  scheduler:
+    container_name: music_scheduler
+    image: main_service
+    restart: always
+    depends_on:
+      - redis
+    environment:
+      <<: *common-env
+    volumes:
+      - ./:/code
+    networks:
+      - musicnet
+
+    entrypoint: "./consumer-entrypoint.sh"
+
 
   redis:
     image: redis:alpine
