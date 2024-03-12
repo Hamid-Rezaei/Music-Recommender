@@ -1,6 +1,5 @@
 import requests
 
-from main.dal.dao.search_music_dao import SearchMusicDao
 from main.utils.singleton import Singleton
 from project.configuration.config import Config
 from project.configuration.configuration import Configuration
@@ -9,7 +8,6 @@ from project.configuration.configuration import Configuration
 class SearchMusicSpotifyLogic(metaclass=Singleton):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.search_music_dao = SearchMusicDao()
 
     def spotify_search_music(self, track):
         # find spotify id
