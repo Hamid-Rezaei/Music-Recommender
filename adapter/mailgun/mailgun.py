@@ -8,11 +8,10 @@ class Mailgun:
     def __init__(self):
         pass
 
-    def send(self, receiver, message, attachments):
+    def send(self, receiver, message):
         request = requests.post(
             url=Config.MAIL_URL,
             auth=("api", Config.MAIL_API_KEY),
-            files=[("attachment", attachments)],
             data={
                 "from": f"mailgun@{Config.MAIL_DOMAIN_NAME}",
                 "to": f"{receiver}",
@@ -31,4 +30,4 @@ if __name__ == "__main__":
         'rb'
     )
 
-    mailgun.send("rezaeih061@gmail.com", "Hello", attachments_)
+    mailgun.send("rezaeih061@gmail.com", "Hello")

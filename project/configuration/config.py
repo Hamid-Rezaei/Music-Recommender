@@ -38,6 +38,12 @@ class Config:
     SHAZAM_URL: str = ""
     SHAZAM_HOST: str = ""
 
+    # Spotify Configs
+    SPOTIFY_API_KEY: str = ""
+    SPOTIFY_SEARCH_URL: str = ""
+    SPOTIFY_RECOMMENDATION_URL: str = ""
+    SPOTIFY_HOST: str = ""
+
     # MailGun Configs
     MAIL_URL: str = ""
     MAIL_API_KEY: str = ""
