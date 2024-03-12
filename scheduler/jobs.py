@@ -2,6 +2,8 @@ from adapter.mailgun.mailgun import Mailgun
 from main.dal.dao.search_music_dao import SearchMusicDao
 from main.logic.search_music_spotify_logic import SearchMusicSpotifyLogic
 from main.models import RequestStatusType
+from project.configuration.config import Config
+from project.configuration.configuration import Configuration
 
 
 class Jobs:
@@ -17,7 +19,8 @@ class Jobs:
         for ready_request in ready_requests:
             # send email
             recommended_songs = self.search_music_spotify_logic.spotify_recommends_music(songId=ready_request.songID)
-            self.mail_adapter.send(receiver=ready_request.email, message=f"I recommend you listening to: {recommended_songs}")
+            self.mail_adapter.send(receiver=ready_request.email,
+                                   message=f"I recommend you listening to: {recommended_songs}")
 
             # update status to done
             self.search_music_dao.update_search_music_request_status(
@@ -26,3 +29,8 @@ class Jobs:
             )
 
             print('One Task was Done')
+
+
+if __name__ == '__main__':
+    Configuration.configure(Config)
+    Jobs().update_search_request_status()

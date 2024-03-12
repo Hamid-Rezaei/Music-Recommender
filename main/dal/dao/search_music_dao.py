@@ -5,8 +5,8 @@ from main.utils.singleton import Singleton
 
 
 class SearchMusicDao(metaclass=Singleton):
-    def __init__(self):
-        ...
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
     def search_music_request(self, email) -> SearchRequestEntity:
         search_request: SearchRequestEntity = SearchRequestEntity.objects.create(

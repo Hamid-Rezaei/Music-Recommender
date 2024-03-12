@@ -12,7 +12,7 @@ x-environment: &common-env
   DB_PORT: ${DB_PORT}
 
   # Redis
-  REDIS_HOST: ${REDIS_HOST}
+  REDIS_HOST: 'misicnet'
   REDIS_PORT: ${REDIS_PORT}
 
   # RabbitMQ

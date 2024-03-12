@@ -8,6 +8,7 @@ from adapter.s3.s3 import SimpleStorageService
 from main.dal.dao.search_music_dao import SearchMusicDao
 from main.logic.search_music_shazam_logic import SearchMusicShazamLogic
 from main.logic.search_music_spotify_logic import SearchMusicSpotifyLogic
+from main.models import RequestStatusType
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -49,6 +50,10 @@ class SearchEventConsumerService:
             spotify_id = self.search_music_spotify_logic.spotify_search_music(track=music_title)
 
             # database
+            self.search_music_dao.update_search_music_request_status(
+                search_id=event['search_id'],
+                status=RequestStatusType.READY
+            )
             self.search_music_dao.save_search_music_request_songID(event['search_id'], spotify_id)
 
         _LOGGER.log(msg="Successfully served event", level=logging.INFO)
